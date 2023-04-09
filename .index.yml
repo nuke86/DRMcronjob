@@ -1,0 +1,2 @@
+- name: Webpage Screenshot
+  uses: karol-brejna-i/webpage-screenshot-action@v1.0.6
