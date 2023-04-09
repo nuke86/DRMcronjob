@@ -6,24 +6,24 @@
     # The URL of the page to be captured
     url: https://ransom.insicurezzadigitale.com/chart-png-ita.php
     # Mode of operation. Possible values:
-* page
-* wholePage
-* scrollToElement
-* element - capture a specific element by selector (see: "selector" and "xpath" input)
+    # * page
+    # * wholePage
+    # * scrollToElement
+    #* element - capture a specific element by selector (see: "selector" and "xpath" input)
 
     mode: # optional, default is wholePage
     # CSS selector of the element to be captured or element to which the view should be scrolled. 
-Can be used in "element" and "scrollToElement" modes.
-Use "selector" or "xpath" input, not both.
+# Can be used in "element" and "scrollToElement" modes.
+# Use "selector" or "xpath" input, not both.
 
     selector: # optional
     # xpath expression for the element to be captured or element to which the view should be scrolled. 
-Can be used in "element" and "scrollToElement" modes.
-Use "selector" or "xpath" input, not both.
+# Can be used in "element" and "scrollToElement" modes.
+# Use "selector" or "xpath" input, not both.
 
     xpath: # optional
     # Script to be executed before the screenshot is taken. 
-Can be used in "script", "page", "wholePage" mode.
+# Can be used in "script", "page", "wholePage" mode.
 
     scriptBefore: # optional
     # Output file name/path. If not specified, the screenshot will be saved to "screenshot.png" in the current directory.
