@@ -2,29 +2,29 @@
   # You may pin to the exact commit or the version.
   # uses: karol-brejna-i/webpage-screenshot-action@676548d721862178f6647a20d7354565ac189cbd
   uses: karol-brejna-i/webpage-screenshot-action@v1.0.6
-  with:
+    with:
     # The URL of the page to be captured
-    url: https://ransom.insicurezzadigitale.com/chart-png-ita.php
+      url: https://ransom.insicurezzadigitale.com/chart-png-ita.php
     # Mode of operation. Possible values:
     # * page
     # * wholePage
     # * scrollToElement
     #* element - capture a specific element by selector (see: "selector" and "xpath" input)
 
-    mode: # optional, default is wholePage
+      mode: # optional, default is wholePage
     # CSS selector of the element to be captured or element to which the view should be scrolled. 
 # Can be used in "element" and "scrollToElement" modes.
 # Use "selector" or "xpath" input, not both.
 
-    selector: # optional
+      selector: # optional
     # xpath expression for the element to be captured or element to which the view should be scrolled. 
 # Can be used in "element" and "scrollToElement" modes.
 # Use "selector" or "xpath" input, not both.
 
-    xpath: # optional
+      xpath: # optional
     # Script to be executed before the screenshot is taken. 
 # Can be used in "script", "page", "wholePage" mode.
 
-    scriptBefore: # optional
+      scriptBefore: # optional
     # Output file name/path. If not specified, the screenshot will be saved to "screenshot.png" in the current directory.
-    output: # optional, default is screenshot.png
+      output: # optional, default is screenshot.png
