@@ -1,37 +1,19 @@
 on:
   schedule:
     - cron: '*/5 * * * *'
-  workflow_dispatch:
-    inputs:
-      websiteURL:
-        description: "What Website Screen ?"
-        required: true
-        default: "https://tai-studio.netlify.app/"
-      width:
-        description: "What Website Width Size ?"
-        required: true
-        default: "1920"
-      height:
-        description: "What Website Height Size ?"
-        required: true
-        default: "1080"
-name: Screen Website
+name: Screen Website          
 jobs:
-  render:
-    name: Screen Website
-    runs-on: ubuntu-latest
+  screenshot:
+    name: Screenshot
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: sudo apt update
-      - run: sudo apt upgrade
-      - run: npm install
-      - run: npm run screen -- --props="$WORKFLOW_INPUT"
-        env:
-          WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
-      - uses: actions/upload-artifact@v2
-        with:
-          name: screen
-          path: screen.png  
+
+    - name: Screenshot Website
+      uses: swinton/screenshot-website@v1.x
+      with:
+        source: https://github.com/swinton/screenshot-website
+        destination: screenshot-${{ matrix.os }}.png
