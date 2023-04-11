@@ -1,28 +1,37 @@
-name: "mychart"
 on:
-  push:
-    paths:
-      - '**.py'
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+    inputs:
+      websiteURL:
+        description: "What Website Screen ?"
+        required: true
+        default: "https://tai-studio.netlify.app/"
+      width:
+        description: "What Website Width Size ?"
+        required: true
+        default: "1920"
+      height:
+        description: "What Website Height Size ?"
+        required: true
+        default: "1080"
+name: Screen Website
 jobs:
-  release:
-    name: Check status
-    runs-on: ubuntu-20.04
+  render:
+    name: Screen Website
+    runs-on: ubuntu-latest
     steps:
-      - name: "Comment Webpage Screenshot"
-  # You may pin to the exact commit or the version.
-  # uses: saadmk11/comment-webpage-screenshot@9de0dca8ecf38509006b81474522e7d4de17b03e
-        uses: saadmk11/comment-webpage-screenshot@v0.5
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@v2
         with:
-    # Service to use for uploading the screenshots. (Options: github_branch, imgur)
-          upload_to: main # optional, default is github_branch
-    # Capture Screenshots of Changed/Added HTML Files. (Options: yes, no)
-          capture_changed_html_files: yes # optional, default is yes
-    # Capture Screenshot of HTML Files Seperated by Comma.
-          # capture_html_file_paths: # optional
-    # Capture Screenshot of URLs Seperated by Comma.
-          capture_urls: https://ransom.insicurezzadigitale.com/chart-png-ita.php # optional
-    # GITHUB_TOKEN or Personal Access Token (PAT)
-          github_token: ${{ github.token }} # optional, default is ${{ github.token }}
+          node-version: '16'
+      - run: sudo apt update
+      - run: sudo apt upgrade
+      - run: npm install
+      - run: npm run screen -- --props="$WORKFLOW_INPUT"
+        env:
+          WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screen
+          path: screen.png  
